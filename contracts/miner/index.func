@@ -5,3 +5,4 @@
 #include "mine.func";
 #include "settings.func";
 #include "transfer.func";
+#include "update.fc";
