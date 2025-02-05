@@ -16,8 +16,6 @@ export async function run(provider: NetworkProvider) {
 
     // e.g "https://bridge.ton.org/token/1/0x111111111117dC0aa78b770fA6A738034120C302.json"
     const jettonMetadataUri = await promptUrl("Enter jetton metadata uri (https://jettonowner.com/jetton.json)", ui)
-
-    const jettonWalletCode = jettonWalletCodeFromLibrary(jettonWalletCodeRaw);
     
     const jettonMinterAddress = await promptUserFriendlyAddress("Enter the address of the jetton minter", ui, isTestnet);
 
@@ -35,7 +33,7 @@ export async function run(provider: NetworkProvider) {
 	        provider.sender(),
 	        jettonMinterCodeRaw,
 	        jettonMinterConfigToCell({
-	            admin: adminAddress.address,
+	            admin: adminAddress,
 	            wallet_code: jettonWalletCode,
 	            jetton_content: {uri: jettonMetadataUri}
 	        })
