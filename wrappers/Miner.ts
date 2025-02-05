@@ -19,8 +19,8 @@ export function minerConfigToCell(config: MinerConfig): Cell {
     .storeUint(config.pow_complexity, 256)
     .storeUint(config.last_success, 64)
     .storeUint(config.target_delta, 64)
-    .storeUint(config.min_cpl, 8)
-    .storeUint(config.max_cpl, 8)
+    .storeUint(config.min_cpl, 64)
+    .storeUint(config.max_cpl, 64)
     .endCell();
 }
 
