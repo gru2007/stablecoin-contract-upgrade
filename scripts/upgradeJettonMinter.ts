@@ -19,7 +19,6 @@ export async function run(provider: NetworkProvider) {
     
     const jettonMinterAddress = await promptUserFriendlyAddress("Enter the address of the jetton minter", ui, isTestnet);
 
-    try {
     const {
             jettonMinterContract,
             adminAddress
@@ -41,8 +40,4 @@ export async function run(provider: NetworkProvider) {
 
         ui.write('Transaction sent');
 
-    } catch (e: any) {
-        ui.write(e.message);
-        return;
-    }
 }
