@@ -17,8 +17,6 @@ export async function run(provider: NetworkProvider) {
 			    pow_complexity: 0x010000000000000000000000000000000000000000000000000000,
 			    last_success: 0x0000000000000001,
 			    target_delta: 0x0000000000000001,
-			    min_cpl: 0x0000000000000001,
-			    max_cpl: 0x0000000000000001,
             },
             await compile('Miner')
         )

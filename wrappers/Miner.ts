@@ -7,8 +7,6 @@ export type MinerConfig = {
     pow_complexity: number,
     last_success: number,
     target_delta: number,
-    min_cpl: number,
-    max_cpl: number,
 };
 
 export function minerConfigToCell(config: MinerConfig): Cell {
@@ -19,15 +17,12 @@ export function minerConfigToCell(config: MinerConfig): Cell {
     .storeUint(config.pow_complexity, 256)
     .storeUint(config.last_success, 64)
     .storeUint(config.target_delta, 64)
-    .storeUint(config.min_cpl, 64)
-    .storeUint(config.max_cpl, 64)
     .endCell();
 }
 
 export const Opcodes = {
     mine: 0x4d696e65,
     transfer_notification: 0x7362d09c,
-    change_settings: 100,
 };
 
 export class Miner implements Contract {
