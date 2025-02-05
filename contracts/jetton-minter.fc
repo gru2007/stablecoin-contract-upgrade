@@ -91,11 +91,10 @@
 	    check_same_workchain(to_address);
 	    int ton_amount = amount;
 	    cell master_msg = begin_cell()
-	        .store_uint(0x178d4519, 32)
-	        .store_uint(0, 64) ;; quert_id
 	        .store_coins(jetton_amount)
-	        .store_slice(my_address()) ;; from_address
-	        .store_slice(sender_address) ;; response_address
+	        .store_slice(sender_address) ;; from_address
+	        .store_slice(my_address()) ;; response_address
+	        .store_uint(0, 1)
 	        .store_coins(0) ;; no forward_amount
 	        .store_uint(0, 1) ;; forward_payload in this slice, not separate cell
 	        .end_cell();
