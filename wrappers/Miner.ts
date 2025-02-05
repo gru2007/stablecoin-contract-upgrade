@@ -16,7 +16,7 @@ export function minerConfigToCell(config: MinerConfig): Cell {
     .storeAddress(config.owner_addr)
     .storeAddress(config.jwall_addr)
     .storeUint(config.seed, 128)
-    .storeUint(config.pow_complexity, 256)
+    .storeUint(config.pow_complexity, 128)
     .storeUint(config.last_success, 64)
     .storeUint(config.target_delta, 64)
     .storeUint(config.min_cpl, 8)
