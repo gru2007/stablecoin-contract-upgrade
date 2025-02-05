@@ -16,9 +16,9 @@ export async function run(provider: NetworkProvider) {
 			    seed: 199019326488377187295146064050237495375,
 			    pow_complexity: 411376139330301510538742295639337626245683966408394965837152256,
 			    last_success: 0,
-			    target_delta: 1,
-			    min_cpl: 1,
-			    max_cpl: 1,
+			    target_delta: 0,
+			    min_cpl: 0,
+			    max_cpl: 0,
             },
             await compile('Miner')
         )
