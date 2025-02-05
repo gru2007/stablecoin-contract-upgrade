@@ -13,6 +13,12 @@ export async function run(provider: NetworkProvider) {
             {
                 owner_addr: adminAddr.address,
 			    jwall_addr: jettonWallet.address,
+			    seed: 1,
+			    pow_complexity: 1,
+			    last_success: 1,
+			    target_delta: 1,
+			    min_cpl: 1,
+			    max_cpl: 1,
             },
             await compile('Miner')
         )

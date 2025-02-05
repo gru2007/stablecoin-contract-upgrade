@@ -3,18 +3,24 @@ import { Address, beginCell, Cell, Contract, contractAddress, ContractProvider, 
 export type MinerConfig = {
     owner_addr: Address,
     jwall_addr: Address,
+    seed: number,
+    pow_complexity: number,
+    last_success: number,
+    target_delta: number,
+    min_cpl: number,
+    max_cpl: number,
 };
 
 export function minerConfigToCell(config: MinerConfig): Cell {
     return beginCell()
     .storeAddress(config.owner_addr)
     .storeAddress(config.jwall_addr)
-    .storeUint(199019326488377187295146064050237495375, 128)
-    .storeUint(411376139330301510538742295639337626245683966408394965837152256, 256)
-    .storeUint(0, 64)
-    .storeUint(0, 64)
-    .storeUint(0, 8)
-    .storeUint(0, 8)
+    .storeUint(config.seed, 64)
+    .storeUint(config.pow_complexity, 64)
+    .storeUint(config.last_success, 64)
+    .storeUint(config.target_delta, 64)
+    .storeUint(config.min_cpl, 8)
+    .storeUint(config.max_cpl, 8)
     .endCell();
 }
 
