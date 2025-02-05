@@ -27,6 +27,4 @@ export async function run(provider: NetworkProvider) {
     await miner.sendDeploy(provider.sender(), toNano('0.05'));
 
     await provider.waitForDeploy(miner.address);
-
-    console.log('ID', await miner.getID());
 }
