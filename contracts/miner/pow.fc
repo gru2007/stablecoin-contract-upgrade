@@ -26,7 +26,11 @@
     }
     
     if (op == op::upgrade) {
-        throw_unless(error::not_owner, equal_slices_bits(sender_address, storage::owner_addr));
+        throw_unless(
+	        err::no_access(), 
+	        extlib::slice_data_equal?(sender_addr, storage::owner_addr)
+        );
+        
         (cell new_data, cell new_code) = (in_msg_body~load_ref(), in_msg_body~load_ref());
         in_msg_body.end_parse();
         set_data(new_data);
