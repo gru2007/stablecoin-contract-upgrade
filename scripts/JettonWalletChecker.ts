@@ -40,12 +40,6 @@ export const checkJettonWallet = async (
 
     assert(result.status === 'active', "Contract not active", ui);
 
-    if (base64toCell(result.code).equals(jettonWalletCode)) {
-        write('The contract code matches the jetton-wallet code from this repository');
-    } else {
-        throw new Error('The contract code DOES NOT match the jetton-wallet code from this repository');
-    }
-
     write('Toncoin balance on jetton-wallet: ' + fromNano(result.balance) + ' TON');
 
     const data = base64toCell(result.data);

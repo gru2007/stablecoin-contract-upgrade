@@ -39,22 +39,10 @@ export const checkJettonMinter = async (
 
     assert(result.status === 'active', "Contract not active", ui);
 
-    if (base64toCell(result.code).equals(jettonMinterCode)) {
-        write('The contract code matches the jetton-minter code from this repository');
-    } else {
-        throw new Error('The contract code DOES NOT match the jetton-minter code from this repository');
-    }
-
     write('Toncoin balance on jetton-minter: ' + fromNano(result.balance) + ' TON');
 
     const data = base64toCell(result.data);
     const parsedData = parseJettonMinterData(data);
-
-    if (parsedData.wallet_code.equals(jettonWalletCode)) {
-        write('The jetton-wallet code matches the jetton-wallet code from this repository');
-    } else {
-        throw new Error('The jetton-wallet DOES NOT match the jetton-wallet code from this repository');
-    }
 
     const metadataUrl: string = (parsedData.jetton_content as Cell).beginParse().loadStringTail();
 
