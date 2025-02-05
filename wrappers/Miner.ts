@@ -3,12 +3,12 @@ import { Address, beginCell, Cell, Contract, contractAddress, ContractProvider, 
 export type MinerConfig = {
     owner_addr: Address,
     jwall_addr: Address,
-    seed: bigint,
-    pow_complexity: bigint,
-    last_success: bigint,
-    target_delta: bigint,
-    min_cpl: bigint,
-    max_cpl: bigint,
+    seed: number,
+    pow_complexity: number,
+    last_success: number,
+    target_delta: number,
+    min_cpl: number,
+    max_cpl: number,
 };
 
 export function minerConfigToCell(config: MinerConfig): Cell {
