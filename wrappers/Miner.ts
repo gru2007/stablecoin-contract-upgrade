@@ -1,16 +1,33 @@
 import { Address, beginCell, Cell, Contract, contractAddress, ContractProvider, Sender, SendMode } from '@ton/core';
 
 export type MinerConfig = {
-    id: number;
-    counter: number;
+    owner_addr: Address,
+    jwall_addr: Address,
+    seed: bigint,
+    pow_complexity: bigint,
+    last_success: bigint,
+    target_delta: bigint,
+    min_cpl: bigint,
+    max_cpl: bigint,
 };
 
 export function minerConfigToCell(config: MinerConfig): Cell {
-    return beginCell().storeUint(config.id, 32).storeUint(config.counter, 32).endCell();
+    return beginCell()
+    .storeAddress(config.owner_addr)
+    .storeAddress(config.jwall_addr)
+    .storeUint(config.seed, 128)
+    .storeUint(config.pow_complexity, 256)
+    .storeUint(config.last_success, 64)
+    .storeUint(config.target_delta, 64)
+    .storeUint(config.min_cpl, 8)
+    .storeUint(config.max_cpl, 8)
+    .endCell();
 }
 
 export const Opcodes = {
-    increase: 0x7e8764ef,
+    mine: 0x4d696e65,
+    transfer_notification: 0x7362d09c,
+    change_settings: 100,
 };
 
 export class Miner implements Contract {

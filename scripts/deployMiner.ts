@@ -1,13 +1,24 @@
 import { toNano } from '@ton/core';
 import { Miner } from '../wrappers/Miner';
 import { compile, NetworkProvider } from '@ton/blueprint';
+import {jettonWalletCodeFromLibrary, promptUrl, promptUserFriendlyAddress} from "../wrappers/ui-utils";
 
 export async function run(provider: NetworkProvider) {
+
+	const ui = provider.ui();
+	const adminAddr = await promptUserFriendlyAddress("Enter the address of the owner", ui, isTestnet);
+	const jettonWallet = await promptUserFriendlyAddress("Enter the address of the jetton wallet", ui, isTestnet);
     const miner = provider.open(
         Miner.createFromConfig(
             {
-                id: Math.floor(Math.random() * 10000),
-                counter: 0,
+                owner_addr: adminAddr,
+			    jwall_addr: jettonWallet,
+			    seed: 0x95b9ba60cd32d91a3255029230f8584f,
+			    pow_complexity: 0x010000000000000000000000000000000000000000000000000000,
+			    last_success: 0,
+			    target_delta: 1,
+			    min_cpl: 1,
+			    max_cpl: 1,
             },
             await compile('Miner')
         )
